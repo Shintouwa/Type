@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Typing Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Join Section -->
+        <div id="join-section" class="section active">
+            <h1>Ready to Type?</h1>
+            <p>Enter your name to join the lobby.</p>
+            <br>
+            <input type="text" id="username" placeholder="Your Name" autocomplete="off">
+            <br>
+            <button id="join-btn">Join Lobby</button>
+        </div>
+
+        <!-- Waiting Section -->
+        <div id="waiting-section" class="section">
+            <h1>Waiting for Host...</h1>
+            <p>The test will begin shortly. Prepare your fingers!</p>
+            <div class="loader"></div> 
+        </div>
+
+        <!-- Test Section -->
+        <div id="test-section" class="section">
+            <div id="timer">00:00</div>
+            <h2>Type the text below exactly:</h2>
+            <div id="paragraph-display">
+                <!-- Text injected here -->
+            </div>
+            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem;">Typing Area (Hidden Input):</p>
+            <textarea id="typing-area" placeholder="Start typing here... text will be invisible!" spellcheck="false" autocomplete="off"></textarea>
+        </div>
+
+        <!-- Result Section -->
+        <div id="result-section" class="section">
+            <h1>Time's Up!</h1>
+            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                <div class="stat-card">
+                    <h3>WPM</h3>
+                    <p id="res-wpm" style="font-size: 2rem; color: var(--accent-color);">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Accuracy</h3>
+                    <p id="res-acc" style="font-size: 2rem; color: var(--success-color);">0%</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Score</h3>
+                    <p id="res-score" style="font-size: 2rem; color: #fbbf24;">0</p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem;">Wait for the next round...</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Blind Typing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+    <div class="container" style="max-width: 1000px;">
+
+        <!-- Login Section -->
+        <div id="login-section" class="section active">
+            <h1>Admin Access</h1>
+            <input type="password" id="admin-pass" placeholder="Enter Password">
+            <br>
+            <button id="login-btn">Login</button>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h1>Control Panel</h1>
+                <div id="status-indicator"
+                    style="padding: 0.5rem 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    Status: <span id="test-status" style="color: var(--error-color);">IDLE</span>
+                </div>
+            </div>
+
+            <div class="admin-controls">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Test Configuration</h3>
+                    <input type="number" id="duration-input" placeholder="Duration (seconds)" value="60">
+                    <br>
+                    <textarea id="admin-paragraph-input" placeholder="Enter paragraph text here..."></textarea>
+                    <button id="update-btn" style="background: #64748b;">Update Settings</button>
+                </div>
+
+                <div
+                    style="flex: 1; min-width: 200px; display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
+                    <button id="start-btn" style="background: var(--success-color); color: white;">START TEST</button>
+                    <button id="stop-btn" style="background: var(--error-color); color: white;">STOP TEST</button>
+                </div>
+            </div>
+
+            <h3>Live Results</h3>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Participant</th>
+                        <th>WPM</th>
+                        <th>Accuracy</th>
+                        <th>Score</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                    <!-- Rows injected here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+
+</html>
