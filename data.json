@@ -1,0 +1,33 @@
+{
+  "admins": [
+    {
+      "username": "admin",
+      "password": "$2b$10$yNtt3H3U/pOeBlo26UKGrOor6h5Qsebyq2zh4JoOJdKpQnVdEOahK",
+      "_id": "1765004570450"
+    }
+  ],
+  "paragraphs": [
+    {
+      "title": "The Quick Brown Fox",
+      "text": "The quick brown fox jumps over the lazy dog.",
+      "difficulty": "Easy",
+      "_id": "1765004570451n4bwt",
+      "createdAt": "2025-12-06T07:02:50.452Z"
+    },
+    {
+      "title": "Typing Speed",
+      "text": "Typing speed is measured in words per minute. The more you practice, the faster you get.",
+      "difficulty": "Medium",
+      "_id": "17650045704521753e",
+      "createdAt": "2025-12-06T07:02:50.452Z"
+    },
+    {
+      "title": "Code Challenge",
+      "text": "function helloWorld() { console.log(\"Hello World\"); }",
+      "difficulty": "Hard",
+      "_id": "1765004570452n6rmt",
+      "createdAt": "2025-12-06T07:02:50.452Z"
+    }
+  ],
+  "results": []
+}

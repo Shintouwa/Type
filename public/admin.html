@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Blind Typing</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-    <div class="container" style="max-width: 1000px;">
-
-        <!-- Login Section -->
-        <div id="login-section" class="section active">
-            <h1>Admin Access</h1>
-            <input type="password" id="admin-pass" placeholder="Enter Password">
-            <br>
-            <button id="login-btn">Login</button>
+    <div class="container" id="login-container">
+        <h1>Admin Login</h1>
+        <div class="auth-box" style="margin: 0 auto;">
+            <input type="text" id="admin-user" placeholder="Username">
+            <input type="password" id="admin-pass" placeholder="Password">
+            <button onclick="adminLogin()">Login</button>
         </div>
-
-        <!-- Dashboard Section -->
-        <div id="dashboard-section" class="section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h1>Control Panel</h1>
-                <div id="status-indicator"
-                    style="padding: 0.5rem 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
-                    Status: <span id="test-status" style="color: var(--error-color);">IDLE</span>
-                </div>
-            </div>
-
-            <div class="admin-controls">
-                <div style="flex: 1; min-width: 300px;">
-                    <h3>Test Configuration</h3>
-                    <input type="number" id="duration-input" placeholder="Duration (seconds)" value="60">
-                    <br>
-                    <textarea id="admin-paragraph-input" placeholder="Enter paragraph text here..."></textarea>
-                    <button id="update-btn" style="background: #64748b;">Update Settings</button>
-                </div>
-
-                <div
-                    style="flex: 1; min-width: 200px; display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
-                    <button id="start-btn" style="background: var(--success-color); color: white;">START TEST</button>
-                    <button id="stop-btn" style="background: var(--error-color); color: white;">STOP TEST</button>
-                </div>
-            </div>
-
-            <h3>Live Results</h3>
-            <table id="results-table">
-                <thead>
-                    <tr>
-                        <th>Participant</th>
-                        <th>WPM</th>
-                        <th>Accuracy</th>
-                        <th>Score</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="results-body">
-                    <!-- Rows injected here -->
-                </tbody>
-            </table>
-        </div>
-
     </div>
 
-    <script src="admin-script.js"></script>
-</body>
+    <div class="container" id="dashboard-container" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Admin Dashboard</h1>
+            <button class="danger" onclick="logout()">Logout</button>
+        </div>
 
+        <!-- Control Panel -->
+        <div class="auth-box" style="max-width: 100%; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1;">
+                <h3>Start New Test</h3>
+                <select id="paragraph-select">
+                    <option value="">Loading Paragraphs...</option>
+                </select>
+                <input type="number" id="test-duration" placeholder="Duration (seconds)" value="60">
+                <button onclick="startTest()">START TEST</button>
+                <button class="danger" onclick="forceEndTest()">FORCE END</button>
+            </div>
+            <div style="flex: 1;">
+                <h3>Add Paragraph</h3>
+                <input type="text" id="new-para-title" placeholder="Title">
+                <textarea id="new-para-text" placeholder="Content..." rows="3"></textarea>
+                <button onclick="addParagraph()">Save Paragraph</button>
+            </div>
+        </div>
+
+        <!-- Live Results -->
+        <h2>Live Results</h2>
+        <button onclick="fetchResults()">Refresh Table</button>
+        <button onclick="exportCSV()">Export CSV</button>
+        
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>Participant</th>
+                    <th>WPM</th>
+                    <th>Accuracy</th>
+                    <th>Score</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Results injected here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/admin.js"></script>
+</body>
 </html>

@@ -1,0 +1,140 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --accent: #bb86fc;
+    --accent-hover: #9955ee;
+    --success: #03dac6;
+    --error: #cf6679;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Auth Screens */
+.auth-box {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #2c2c2c;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button {
+    background: var(--accent);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: var(--accent-hover);
+}
+
+button.danger {
+    background: var(--error);
+}
+
+/* Dashboard Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: var(--card-bg);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    color: var(--text-secondary);
+}
+
+/* Test Area */
+.test-screen {
+    display: none; /* Hidden by default */
+}
+
+.paragraph-display {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    user-select: none; /* Important for SRS */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none; /* Helps prevent easy interactions */
+}
+
+/* Invisible Input */
+.blind-input {
+    width: 100%;
+    height: 150px;
+    background: transparent;
+    color: transparent; /* Text invisible */
+    caret-color: transparent; /* Cursor invisible */
+    border: 1px solid #333; /* Visible border to know focus area, SRS says "functional" */
+    /* SRS says "No characters, no highlight reveal". */
+    /* If border is allowed, good. If "Make it completely blank", we might want simple indicator. */
+    /* Let's keep a subtle border so they know where to click to focus. */
+}
+
+.blind-input:focus {
+    outline: 2px solid var(--accent);
+}
+
+.timer {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--success);
+    margin: 20px 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}

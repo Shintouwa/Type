@@ -4,63 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blind Typing Test</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-    <div class="container">
-        
-        <!-- Join Section -->
-        <div id="join-section" class="section active">
-            <h1>Ready to Type?</h1>
-            <p>Enter your name to join the lobby.</p>
-            <br>
-            <input type="text" id="username" placeholder="Your Name" autocomplete="off">
-            <br>
-            <button id="join-btn">Join Lobby</button>
+    <div class="container fade-in" id="welcome-screen">
+        <h1>Welcome to the Blind Typing Test</h1>
+        <p>Enter your details to join.</p>
+        <div class="auth-box" style="margin: 0 auto;">
+            <input type="text" id="participant-name" placeholder="Full Name" required>
+            <button onclick="joinTest()">Join Waiting Room</button>
         </div>
-
-        <!-- Waiting Section -->
-        <div id="waiting-section" class="section">
-            <h1>Waiting for Host...</h1>
-            <p>The test will begin shortly. Prepare your fingers!</p>
-            <div class="loader"></div> 
-        </div>
-
-        <!-- Test Section -->
-        <div id="test-section" class="section">
-            <div id="timer">00:00</div>
-            <h2>Type the text below exactly:</h2>
-            <div id="paragraph-display">
-                <!-- Text injected here -->
-            </div>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem;">Typing Area (Hidden Input):</p>
-            <textarea id="typing-area" placeholder="Start typing here... text will be invisible!" spellcheck="false" autocomplete="off"></textarea>
-        </div>
-
-        <!-- Result Section -->
-        <div id="result-section" class="section">
-            <h1>Time's Up!</h1>
-            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem;">
-                <div class="stat-card">
-                    <h3>WPM</h3>
-                    <p id="res-wpm" style="font-size: 2rem; color: var(--accent-color);">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Accuracy</h3>
-                    <p id="res-acc" style="font-size: 2rem; color: var(--success-color);">0%</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Score</h3>
-                    <p id="res-score" style="font-size: 2rem; color: #fbbf24;">0</p>
-                </div>
-            </div>
-            <p style="margin-top: 2rem;">Wait for the next round...</p>
-        </div>
-
     </div>
 
-    <script src="script.js"></script>
+    <div class="container fade-in test-screen" id="waiting-screen" style="display: none;">
+        <h2>Waiting for Admin to Start...</h2>
+        <div class="loader"></div> 
+    </div>
+
+    <div class="container fade-in test-screen" id="active-test-screen" style="display: none;">
+        <div class="timer" id="timer-display">00:00</div>
+        
+        <div class="paragraph-display" id="paragraph-text">
+            <!-- Paragraph content injected here -->
+        </div>
+
+        <p class="instruction">Type the above text below. Your typing is invisible!</p>
+        
+        <textarea class="blind-input" id="typing-area" spellcheck="false" autocomplete="off"></textarea>
+    </div>
+
+    <div class="container fade-in test-screen" id="result-screen" style="display: none;">
+        <h1>Test Completed!</h1>
+        <p>Your results have been submitted.</p>
+        <div class="auth-box" id="my-results" style="margin: 0 auto; text-align: left;">
+            <p><strong>WPM:</strong> <span id="res-wpm">0</span></p>
+            <p><strong>Accuracy:</strong> <span id="res-acc">0%</span></p>
+            <p><strong>Final Score:</strong> <span id="res-score">0</span></p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
